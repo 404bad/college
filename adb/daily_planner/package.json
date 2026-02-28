@@ -4,9 +4,9 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx watch --experimental-sqlite src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node --experimental-sqlite dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,12 @@
   "packageManager": "pnpm@10.30.3",
   "dependencies": {
     "dotenv": "^17.3.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.2.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^25.3.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
