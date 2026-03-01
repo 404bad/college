@@ -7,6 +7,7 @@ import { AppError } from "src/utils/AppError";
 const router = Router();
 
 router.post("/register", catchAsync(authController.registerController));
+router.post("/login", catchAsync(authController.loginController));
 router.get(
   "/test-error",
   catchAsync(async (_req, _res) => {
