@@ -1,6 +1,7 @@
 import config from "./config/env.config";
 import express, { type Request, type Response } from "express";
 import path from "path";
+import cookieParser from "cookie-parser";
 
 import { connectDB, disconnectDB } from "./config/db.config";
 
@@ -11,6 +12,7 @@ import { AppError } from "./utils/AppError";
 const app = express();
 const PORT = config.PORT || 3000;
 
+app.use(cookieParser());
 //middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

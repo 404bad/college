@@ -2,17 +2,17 @@ import { Router } from "express";
 
 import * as authController from "../controllers/auth.controller";
 import { catchAsync } from "../utils/catchAsync.util";
-import { AppError } from "src/utils/AppError";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();
 
 router.post("/register", catchAsync(authController.registerController));
 router.post("/login", catchAsync(authController.loginController));
-router.get(
-  "/test-error",
-  catchAsync(async (_req, _res) => {
-    throw new AppError("Something went wrong", 400);
-  }),
+router.post(
+  "/logout",
+  authMiddleware,
+  catchAsync(authController.logoutController),
 );
+router.post("/refresh", authController.refreshController);
 
 export default router;

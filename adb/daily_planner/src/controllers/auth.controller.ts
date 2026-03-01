@@ -6,10 +6,22 @@ import {
   findUserByIdentifierWithPassword,
   findUserByUsernameOrEmail,
 } from "../services/auth.service";
-import { AppError } from "src/utils/AppError";
-import { sanitizeUser } from "src/utils/sanitizeUser.util";
-import { generateAccessToken, generateRefreshToken } from "src/utils/jwt.util";
-import { setRefreshTokenCookie } from "src/utils/cookie.util";
+import {
+  getOrCreateRefreshToken,
+  deleteRefreshToken,
+  findRefreshToken,
+} from "../services/refreshToken.service";
+import { AppError } from "../utils/AppError";
+import { sanitizeUser } from "../utils/sanitizeUser.util";
+import { generateAccessToken } from "../utils/jwt.util";
+import {
+  setAccessTokenCookie,
+  clearAccessTokenCookie,
+  setRefreshTokenCookie,
+  clearRefreshTokenCookie,
+} from "../utils/cookie.util";
+import User from "../models/user.model";
+import { AuthRequest } from "../middlewares/auth.middleware";
 
 //Register controller
 export const registerController = async (req: Request, res: Response) => {
@@ -42,23 +54,20 @@ export const registerController = async (req: Request, res: Response) => {
     avatar,
   });
 
-  const safeUser = sanitizeUser(user);
-
   const accessToken = generateAccessToken(user);
-  const refreshToken = generateRefreshToken(user);
+  const refreshToken = await getOrCreateRefreshToken(user);
 
+  setAccessTokenCookie(res, accessToken);
   setRefreshTokenCookie(res, refreshToken);
 
   return res.status(201).json({
     success: true,
     message: "User Registered Successful.",
-    accessToken,
-    user: safeUser,
+    user: sanitizeUser(user),
   });
 };
 
 //Login Controller
-
 export const loginController = async (req: Request, res: Response) => {
   const { identifier, password } = req.body;
 
@@ -71,16 +80,53 @@ export const loginController = async (req: Request, res: Response) => {
   if (!isMatch) throw new AppError("Invalid credentials.", 401);
 
   const accessToken = generateAccessToken(user);
-  const refreshToken = generateRefreshToken(user);
+  const refreshToken = await getOrCreateRefreshToken(user);
 
-  const safeUser = sanitizeUser(user);
-
+  setAccessTokenCookie(res, accessToken);
   setRefreshTokenCookie(res, refreshToken);
 
   return res.status(200).json({
     success: true,
     message: "User Logged in Successful.",
-    accessToken,
-    user: safeUser,
+    user: sanitizeUser(user),
+  });
+};
+
+// Logout Controller
+export const logoutController = async (req: AuthRequest, res: Response) => {
+  await deleteRefreshToken(req.userId!);
+  clearAccessTokenCookie(res);
+  clearRefreshTokenCookie(res);
+
+  return res.status(200).json({
+    success: true,
+    message: "Logged out successfully.",
+  });
+};
+
+// Refresh Controller
+export const refreshController = async (req: Request, res: Response) => {
+  const { refreshToken } = req.body;
+
+  if (!refreshToken) throw new AppError("No refresh token provided.", 401);
+
+  const storedToken = await findRefreshToken(refreshToken);
+  if (!storedToken)
+    throw new AppError("Invalid or expired refresh token.", 403);
+
+  if (storedToken.expiresAt < new Date()) {
+    await storedToken.deleteOne();
+    throw new AppError("Refresh token expired. Please login again.", 403);
+  }
+
+  const user = await User.findById(storedToken.user_id);
+  if (!user) throw new AppError("User not found.", 404);
+
+  const newAccessToken = generateAccessToken(user);
+  setAccessTokenCookie(res, newAccessToken);
+
+  return res.status(200).json({
+    success: true,
+    message: "Access token refreshed.",
   });
 };
