@@ -4,6 +4,8 @@ import path from "path";
 
 import { connectDB, disconnectDB } from "./config/db.config";
 
+import authRoutes from "./routes/auth.route";
+
 const app = express();
 const PORT = config.PORT || 3000;
 
@@ -23,6 +25,7 @@ app.get("/", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
+app.use("/auth", authRoutes);
 const Server = app.listen(PORT, () => {
   console.log(
     `Server is running on port ${PORT}. View it at http://localhost:${PORT}`,
