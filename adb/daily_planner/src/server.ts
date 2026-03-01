@@ -5,6 +5,8 @@ import path from "path";
 import { connectDB, disconnectDB } from "./config/db.config";
 
 import authRoutes from "./routes/auth.route";
+import { errorHandler } from "./middlewares/errorHandler.middleware";
+import { AppError } from "./utils/AppError";
 
 const app = express();
 const PORT = config.PORT || 3000;
@@ -26,11 +28,19 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
+
+app.use((_req, _res, next) => {
+  next(new AppError("Route not found", 404));
+});
+
 const Server = app.listen(PORT, () => {
   console.log(
     `Server is running on port ${PORT}. View it at http://localhost:${PORT}`,
   );
 });
+
+// registered last
+app.use(errorHandler);
 
 process.on("SIGTERM", shutdown);
 process.on("SIGINT", shutdown);
