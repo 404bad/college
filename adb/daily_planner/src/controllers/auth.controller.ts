@@ -6,6 +6,7 @@ import {
   findUserByUsernameOrEmail,
 } from "../services/auth.service";
 import { AppError } from "src/utils/AppError";
+import { sanitizeUser } from "src/utils/sanitizeUser.util";
 
 //Register controller
 export const registerController = async (req: Request, res: Response) => {
@@ -38,9 +39,11 @@ export const registerController = async (req: Request, res: Response) => {
     avatar,
   });
 
+  const safeUser = sanitizeUser(user);
+
   return res.status(201).json({
     success: true,
     message: "User Registered Successful.",
-    user,
+    user: safeUser,
   });
 };
