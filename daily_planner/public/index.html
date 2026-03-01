@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Planner</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- ── AUTH PAGE ── -->
+    <div id="authPage" class="page active">
+      <div class="auth-box">
+        <div class="auth-brand">Daily Planner</div>
+        <p class="auth-sub">Plan your day. Own your time.</p>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" onclick="switchTab('login')">
+            Sign In
+          </button>
+          <button class="auth-tab" onclick="switchTab('register')">
+            Sign Up
+          </button>
+        </div>
+
+        <div id="authError" class="auth-error"></div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+          <div class="form-group">
+            <label>Username or Email</label>
+            <input
+              id="loginIdentifier"
+              type="text"
+              placeholder="Enter username or email"
+            />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input id="loginPassword" type="password" placeholder="••••••••" />
+          </div>
+          <button class="btn btn-primary" id="loginBtn" onclick="login()">
+            Sign In
+          </button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display: none">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input id="regFullname" type="text" placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label>Username</label>
+              <input id="regUsername" type="text" placeholder="johndoe" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input id="regEmail" type="email" placeholder="john@email.com" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone (optional)</label>
+              <input id="regPhone" type="tel" placeholder="9800000000" />
+            </div>
+            <div class="form-group">
+              <label>Gender</label>
+              <select id="regGender">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Password</label>
+              <input id="regPassword" type="password" placeholder="••••••••" />
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input id="regConfirm" type="password" placeholder="••••••••" />
+            </div>
+          </div>
+          <button class="btn btn-primary" id="registerBtn" onclick="register()">
+            Create Account
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DASHBOARD PAGE ── -->
+    <div id="dashPage" class="page">
+      <nav class="topbar">
+        <div class="topbar-brand">Daily Planner</div>
+        <div class="topbar-right">
+          <div class="user-pill">
+            <img id="userAvatar" class="user-avatar" src="" alt="avatar" />
+            <span id="userName" class="user-name"></span>
+          </div>
+          <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+
+      <div class="dash-content">
+        <div class="dash-header">
+          <div class="dash-greeting">
+            Good day, <span id="greetName"></span>.
+          </div>
+          <p class="dash-subtitle" id="dashSubtitle">
+            Here's what you have planned.
+          </p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-num" id="statTotal">0</div>
+            <div class="stat-label">Total</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="statOpen" style="color: #fff">0</div>
+            <div class="stat-label">Open</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num" id="statDone" style="color: var(--success)">
+              0
+            </div>
+            <div class="stat-label">Done</div>
+          </div>
+        </div>
+
+        <!-- ADD TODO -->
+        <div class="add-todo-card">
+          <div class="add-todo-title">+ New Task</div>
+          <div class="add-todo-grid">
+            <input
+              class="full"
+              id="newTitle"
+              type="text"
+              placeholder="Task title"
+            />
+            <input
+              class="full"
+              id="newDesc"
+              type="text"
+              placeholder="Description (optional)"
+            />
+            <div class="form-group" style="margin: 0">
+              <label>Start Date</label>
+              <input id="newStart" type="date" />
+            </div>
+            <div class="form-group" style="margin: 0">
+              <label>Due Date *</label>
+              <input id="newDue" type="date" />
+            </div>
+          </div>
+          <button class="btn-add" onclick="addTodo()">
+            <span>＋</span> Add Task
+          </button>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters">
+          <button class="filter-btn active" onclick="setFilter('all', this)">
+            All
+          </button>
+          <button class="filter-btn" onclick="setFilter('open', this)">
+            Open
+          </button>
+          <button class="filter-btn" onclick="setFilter('completed', this)">
+            Completed
+          </button>
+          <button class="filter-btn" onclick="setFilter('overdue', this)">
+            Overdue
+          </button>
+        </div>
+
+        <!-- TODO LIST -->
+        <div class="todo-list" id="todoList"></div>
+      </div>
+    </div>
+
+    <!-- ── EDIT MODAL ── -->
+    <div class="modal-overlay" id="editModal">
+      <div class="modal">
+        <div class="modal-title">Edit Task</div>
+        <input type="hidden" id="editId" />
+        <div class="form-group">
+          <label>Title</label>
+          <input id="editTitle" type="text" placeholder="Task title" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input id="editDesc" type="text" placeholder="Description" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Date</label>
+            <input id="editStart" type="date" />
+          </div>
+          <div class="form-group">
+            <label>Due Date</label>
+            <input id="editDue" type="date" />
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button class="btn-save" onclick="saveEdit()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TOAST ── -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/scripts.js"></script>
+  </body>
+</html>

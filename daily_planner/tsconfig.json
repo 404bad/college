@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es2024",
+    "module": "commonjs",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "outDir": "dist",
+    "removeComments": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true, // helps with debugging stack traces
+    "noUnusedLocals": true, // warns on unused variables
+    "noUnusedParameters": true, // warns on unused function params
+    "noImplicitReturns": true // all code paths must return a value
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
