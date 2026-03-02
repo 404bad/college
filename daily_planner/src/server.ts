@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 import { connectDB, disconnectDB } from "./config/db.config";
 
 import authRoutes from "./routes/auth.route";
+import todoRoutes from "./routes/todo.route";
+
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { AppError } from "./utils/AppError";
 
@@ -34,11 +36,7 @@ app.get("/", (_req: Request, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
-app.use("/todos", (_req, res) => {
-  res.json({
-    message: "Coming Soon..!!",
-  });
-});
+app.use("/todos", todoRoutes);
 
 app.use((_req, _res, next) => {
   next(new AppError("Route not found", 404));

@@ -2,12 +2,6 @@ import mongoose from "mongoose";
 
 export type Gender = "male" | "female" | "other";
 
-const AVATAR_STYLES: Record<Gender, string> = {
-  male: "adventurer",
-  female: "avataars",
-  other: "thumbs",
-};
-
 export interface IUser extends mongoose.Document {
   username: string;
   password: string;
@@ -46,8 +40,7 @@ const userSchema = new mongoose.Schema<IUser>(
 
 userSchema.pre("save", async function () {
   if (!this.avatar) {
-    const style = AVATAR_STYLES[this.gender];
-    this.avatar = `https://api.dicebear.com/9.x/${style}/svg?seed=${this.username}`;
+    this.avatar = `https://api.dicebear.com/9.x/notionists/svg?seed=${this.username}`;
   }
 });
 

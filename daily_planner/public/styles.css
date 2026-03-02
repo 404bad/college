@@ -10,12 +10,12 @@
   --bg: #000;
   --surface: #0d0d0d;
   --surface2: #151515;
-  --border: #222;
+  --border: #444;
   --blue: #2563ff;
   --blue-dim: rgba(37, 99, 255, 0.12);
   --blue-glow: rgba(37, 99, 255, 0.25);
   --text: #fff;
-  --muted: #666;
+  --muted: #fafafa;
   --dim: #999;
   --danger: #ff3b5c;
   --success: #00d084;
@@ -452,7 +452,7 @@ select option {
 .todo-check {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--border);
+  border: 2px solid #fff;
   border-radius: 50%;
   flex-shrink: 0;
   margin-top: 2px;
@@ -526,6 +526,19 @@ select option {
   display: flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+/* Make date text white */
+input[type="date"] {
+  color: #fff;
+  background-color: #1e1e1e; /* if you’re using dark theme */
+  border: 1px solid #444;
+}
+
+/* Make the calendar icon white */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }
 
 .todo-date.overdue {

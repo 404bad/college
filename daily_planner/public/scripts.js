@@ -156,7 +156,7 @@ const initDashboard = async () => {
     currentUser.fullname?.split(" ")[0] || currentUser.username;
   $("userAvatar").src =
     currentUser.avatar ||
-    `https://api.dicebear.com/9.x/thumbs/svg?seed=${currentUser.username}`;
+    `https://api.dicebear.com/9.x/notionists/svg?seed=${currentUser.username}`;
   await fetchTodos();
 };
 
