@@ -4,8 +4,8 @@ import {
   deleteTodo,
   getTodos,
   updateTodo,
-} from "src/controllers/todo.controller";
-import { authMiddleware } from "src/middlewares/auth.middleware";
+} from "../controllers/todo.controller";
+import { authMiddleware } from "../middlewares/auth.middleware";
 
 const router = Router();
 
