@@ -1,0 +1,15 @@
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/bin/Debug/net10.0/TaskProgram
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/bin/Debug/net10.0/TaskProgram.deps.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/bin/Debug/net10.0/TaskProgram.runtimeconfig.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/bin/Debug/net10.0/TaskProgram.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/bin/Debug/net10.0/TaskProgram.pdb
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.GeneratedMSBuildEditorConfig.editorconfig
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.AssemblyInfoInputs.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.AssemblyInfo.cs
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.csproj.CoreCompileInputs.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.sourcelink.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/refint/TaskProgram.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.pdb
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/TaskProgram.genruntimeconfig.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/TaskProgram/obj/Debug/net10.0/ref/TaskProgram.dll

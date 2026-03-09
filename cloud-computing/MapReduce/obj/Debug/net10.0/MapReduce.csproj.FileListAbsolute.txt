@@ -1,0 +1,15 @@
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/bin/Debug/net10.0/MapReduce
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/bin/Debug/net10.0/MapReduce.deps.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/bin/Debug/net10.0/MapReduce.runtimeconfig.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/bin/Debug/net10.0/MapReduce.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/bin/Debug/net10.0/MapReduce.pdb
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.GeneratedMSBuildEditorConfig.editorconfig
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.AssemblyInfoInputs.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.AssemblyInfo.cs
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.csproj.CoreCompileInputs.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.sourcelink.json
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/refint/MapReduce.dll
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.pdb
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/MapReduce.genruntimeconfig.cache
+/home/kailashbadu/Desktop/Learning/college/adb/cloud-computing/MapReduce/obj/Debug/net10.0/ref/MapReduce.dll
